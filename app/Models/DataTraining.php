@@ -15,6 +15,7 @@ class DataTraining extends Model
         'title',
         'brand',
         'size',
-        'model'
+        'model',
+        'brand_id'
     ];
 }

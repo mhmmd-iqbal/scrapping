@@ -90,7 +90,7 @@
                                         <div class="row">
                                             <div class="col-6">
                                                 <div class="row m-b-20">
-                                                    <div class="col-4">Brand </div>
+                                                    <div class="col-4">Merek </div>
                                                     <div class="col-8" id="showBrand"></div>
                                                 </div>
                                                 <div class="row m-b-20">
@@ -103,14 +103,6 @@
                                                 </div>
                                             </div>
                                             <div class="col-6 text-right">
-                                                <div class="row">
-                                                    <div class="col-12 m-b-20">
-                                                        <button class="btn btn-primary" style="width: 20vmin">AMBINER</button>
-                                                    </div>
-                                                    <div class="col-12 m-b-20">
-                                                        <button class="btn btn-danger" style="width: 20vmin">RESET</button>
-                                                    </div>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>

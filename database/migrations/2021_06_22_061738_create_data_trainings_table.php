@@ -19,8 +19,16 @@ class CreateDataTrainingsTable extends Migration
             $table->boolean('brand')->default(false);
             $table->boolean('size')->default(false);
             $table->boolean('model')->default(false);
+            $table->integer('brand_id')
+                ->unsigned()
+                ->nullable();
             $table->softDeletes();
             $table->timestamps();
+
+            // $table->foreign('brand_id')
+            //     ->references('id')
+            //     ->on('brands')
+            //     ->onUpdate('cascade');
         });
     }
 

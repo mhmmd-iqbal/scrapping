@@ -60,8 +60,8 @@
                                                     <tr>
                                                         <th>No</th>
                                                         <th>Title Produk</th>
-                                                        <th>Brand</th>
-                                                        <th>Size</th>
+                                                        <th>Merek</th>
+                                                        <th>Ukuran</th>
                                                         <th>Model</th>
                                                     </tr>
                                                 </thead>

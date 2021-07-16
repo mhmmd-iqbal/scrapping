@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AlgorithmController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ScrapperController;
@@ -33,7 +34,8 @@ Route::middleware('auth')->group(function () {
         });
     });
     Route::resources([
-        'scraps'    => ScrapperController::class,
+        'scraps'        => ScrapperController::class,
+        'algorithm'     => AlgorithmController::class,
     ]);
 });
 

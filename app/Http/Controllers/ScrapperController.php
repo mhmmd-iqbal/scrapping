@@ -18,15 +18,20 @@ class ScrapperController extends Controller
             $data = DataTraining::get();
             return DataTables::of($data)
                 ->addIndexColumn()
-                ->editColumn('brand', function ($item) {
-                    return  $item->brand == 1 ? true : false;
+                ->addColumn('brand', function ($item) {
+                    return  $item->brand == 1 ? '<i class="fa fa-check text-success"></i>' : '<i class="fa fa-times text-danger"></i>';
                 })
-                ->editColumn('size', function ($item) {
-                    return  $item->size == 1 ? true : false;
+                ->addColumn('size', function ($item) {
+                    return  $item->size == 1 ? '<i class="fa fa-check text-success"></i>' : '<i class="fa fa-times text-danger"></i>';
                 })
-                ->editColumn('model', function ($item) {
-                    return  $item->model == 1 ? true : false;
+                ->addColumn('model', function ($item) {
+                    return  $item->model == 1 ? '<i class="fa fa-check text-success"></i>' : '<i class="fa fa-times text-danger"></i>';
                 })
+                ->rawColumns([
+                    'brand',
+                    'size',
+                    'model',
+                ])
                 ->make(true);
         }
         return view('pages.scrapes.index');
@@ -38,7 +43,6 @@ class ScrapperController extends Controller
         $keyword = $request->input('keyword');
 
         $loop  = $value / 100;
-        $data  = [];
 
         $paginate  = 100;
         $iteration = 0;
@@ -50,31 +54,35 @@ class ScrapperController extends Controller
                 $title = '';
 
                 $brands = Brand::get();
-                $brandsArray = [];
                 $titleArrays = '';
                 $model = false;
 
-                foreach ($brands as $key => $brand) {
-                    $brandsArray[$key] = $brand->name;
-                }
-
+                $brandId = null;
 
                 $result = $this->scrape($keyword, $start, $paginate);
+
                 foreach ($result['items'] as $item) {
                     $title = strtoupper($item['item_basic']['name']);
                     $titleArrays = explode(' ', $title);
                     $model = false;
-                    foreach ($titleArrays as $key => $titleArray) {
+                    $brandId = null;
+                    foreach ($titleArrays as $titleArray) {
                         if (preg_match('/[A-Za-z]/', $titleArray) && preg_match('/[0-9]/', $titleArray)) {
                             $model = true;
+                        }
+                        foreach ($brands as $brand) {
+                            if ($brand->name === $titleArray) {
+                                $brandId = $brand->id;
+                            }
                         }
                     }
 
                     DataTraining::create([
-                        'title' => $title,
-                        'size'  => strpos($title, 'INC') !== false ? true : false,
-                        'brand' => preg_match('(' . implode('|', $brandsArray) . ')', $title) ? true : false,
-                        'model' => $model
+                        'title'     => $title,
+                        'size'      => strpos($title, 'INC') !== false ? true : false,
+                        'brand'     => $brandId == null ? false : true,
+                        'model'     => $model,
+                        'brand_id'  => $brandId
                     ]);
                 }
 
@@ -106,10 +114,6 @@ class ScrapperController extends Controller
     public function show(DataTraining $scrap)
     {
         $brands = Brand::get();
-        $brandsArray = [];
-        foreach ($brands as $key => $brand) {
-            $brandsArray[$key] = $brand->name;
-        }
 
         $titleArrays = explode(' ', $scrap->title);
         $data = [
@@ -119,8 +123,10 @@ class ScrapperController extends Controller
         ];
         foreach ($titleArrays as $i => $titleArray) {
 
-            if (in_array($titleArray, $brandsArray)) {
-                $data['brand'] = $titleArray;
+            foreach ($brands as $brand) {
+                if ($brand->name === $titleArray) {
+                    $data['brand'] = $brand->id;
+                }
             }
 
             if (strpos($titleArray, 'INC') !== false) {

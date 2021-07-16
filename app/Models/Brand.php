@@ -14,4 +14,9 @@ class Brand extends Model
     protected $fillable = [
         'name'
     ];
+
+    public function dataTrainings()
+    {
+        return $this->hasMany(DataTraining::class, 'brand_id', 'id');
+    }
 }
