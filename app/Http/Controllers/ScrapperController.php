@@ -125,7 +125,7 @@ class ScrapperController extends Controller
 
             foreach ($brands as $brand) {
                 if ($brand->name === $titleArray) {
-                    $data['brand'] = $brand->id;
+                    $data['brand'] = $brand->name;
                 }
             }
 
