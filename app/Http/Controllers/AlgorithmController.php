@@ -25,14 +25,17 @@ class AlgorithmController extends Controller
         $brandsBrand     = Brand::withCount(['dataTrainings' => function ($q) {
             $q->where('brand', true);
         }])
+            ->whereHas('dataTrainings')
             ->get();
         $brandsSize     = Brand::withCount(['dataTrainings' => function ($q) {
             $q->where('size', true);
         }])
+            ->whereHas('dataTrainings')
             ->get();
         $brandsModel     = Brand::withCount(['dataTrainings' => function ($q) {
             $q->where('model', true);
         }])
+            ->whereHas('dataTrainings')
             ->get();
 
         $sumBrandsBrand = 1;
