@@ -46,5 +46,23 @@ const loading = (title, text) => {
         }
     })
 }
+
+const logout = () => {
+    Swal.fire({
+        title: 'Apakah anda yakin akan logout ?',
+        text: "",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'Batalkan',
+        confirmButtonText: 'Lanjutkan !'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            loading('Sedang Diproses...', '')
+            window.location.href = `{{route('logout')}}`
+        }
+    })
+}
 </script>
 @yield('custom_scripts')

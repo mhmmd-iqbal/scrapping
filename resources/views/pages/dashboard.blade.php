@@ -59,6 +59,10 @@
                 }
             });
         }
+
+        const openModal = () => {
+            $('#staticModal').modal({'show': true})
+        }
     </script>
 @endsection
 
@@ -75,37 +79,18 @@
                     </div>
                 </div>
                 <div class="row m-t-25">
-                    <div class="col-10">
+                    <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <div class="row">
-                                    <div class="col-md-12 m-t-20 m-b-20 form-group">
-                                        <select name="" id="title" class="select2" onchange="showDetail()" ></select>
-                                    </div>
-                                </div>
+                                <h4 class="text-center text-uppercase">
+                                    Penerapan NER untuk mengenali fitur produk pada ecommerce
+                                </h4>
                             </div>
                             <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-12 m-b-20">
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <div class="row m-b-20">
-                                                    <div class="col-4">Merek </div>
-                                                    <div class="col-8" id="showBrand"></div>
-                                                </div>
-                                                <div class="row m-b-20">
-                                                    <div class="col-4">Ukuran </div>
-                                                    <div class="col-8" id="showSize"></div>
-                                                </div>
-                                                <div class="row m-b-20">
-                                                    <div class="col-4">Model </div>
-                                                    <div class="col-8" id="showModel"></div>
-                                                </div>
-                                            </div>
-                                            <div class="col-6 text-right">
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div class="d-flex justify-content-center">
+                                    <button class="btn btn-primary m-t-100 m-b-100"  onclick="openModal()" >
+                                        <i class="fa fa-search"></i> UJI JUDUL
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -115,4 +100,58 @@
         </div>
     </div>
     <!-- END MAIN CONTENT-->
+@endsection
+
+@section('modal')
+    <!-- modal static -->
+    <div class="modal fade" id="staticModal" tabindex="-1" role="dialog" aria-labelledby="staticModalLabel" aria-hidden="true"
+    data-backdrop="static">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                {{-- <div class="modal-header">
+                    <h5 class="modal-title" id="staticModalLabel">Uji Judul</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div> --}}
+                <div class="modal-body">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col-md-12 m-t-20 m-b-20 form-group">
+                                    <select name="" id="title" class="select2" onchange="showDetail()" ></select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12 m-b-20">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered">
+                                            <tr>
+                                                <th style="width: 20%">Merek</th>
+                                                <td id="showBrand"></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Ukuran</th>
+                                                <td id="showSize"></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Model</th>
+                                                <td id="showModel"></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end modal static -->
 @endsection

@@ -40,6 +40,10 @@
                     <a href="{{route('scraps.index')}}">
                         <i class="fas fa-tasks"></i>Scrapping Data</a>
                 </li>
+                <li class="{{ (request()->is('algorithm')) ? 'active' : '' }}">
+                    <a href="{{route('algorithm.index')}}">
+                        <i class="fas fa-code"></i>Algoritma</a>
+                </li>
             </ul>
         </div>
     </nav>

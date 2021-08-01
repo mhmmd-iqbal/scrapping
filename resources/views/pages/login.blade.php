@@ -43,7 +43,10 @@
                     <div class="login-content">
                         <div class="login-logo">
                             <a href="#">
-                                <img src="images/icon/logo.png" alt="CoolAdmin">
+                                {{-- <img src="images/icon/logo.png" alt="CoolAdmin"> --}}
+                                <h3>
+                                    PENERAPAN NER UNTUK MENGENALI FITUR PRODUK PADA ECOMMERCE
+                                </h3>
                             </a>
                         </div>
                         <div class="login-form">

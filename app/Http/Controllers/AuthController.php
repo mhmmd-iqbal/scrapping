@@ -6,9 +6,7 @@ use App\Http\Requests\AuthRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Validator;
-use Hash;
 use Session;
-use App\Models\User;
 
 
 class AuthController extends Controller
@@ -53,5 +51,11 @@ class AuthController extends Controller
             Session::flash('error', 'Email, Username atau password salah');
             return redirect()->back();
         }
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('/');
     }
 }
