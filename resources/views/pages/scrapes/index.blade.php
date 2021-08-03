@@ -1,6 +1,6 @@
 @extends('partials.master')
 
-@section('title', 'SCRAPPING DATA')
+@section('title', 'CRAWLING DATA')
 
 @section('custom_styles')
 
@@ -18,13 +18,13 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="overview-wrap">
-                            <h2 class="title-1 text-uppercase">Scrapping Data</h2>
+                            <h2 class="title-1 text-uppercase">Crawling Data</h2>
                         </div>
                     </div>
                     <div class="col-md-12 m-t-20">
                         <div class="card">
                             <div class="card-header">
-                                <strong class="card-title">List Data Scrapped</strong>
+                                <strong class="card-title">List Data Crawling</strong>
                             </div>
                             <div class="card-body">
                                 <div class="row">
@@ -50,7 +50,7 @@
                                     <div class="col-md-12">
                                         <div class="alert alert-primary">
                                             <b>PERHATIAN</b>
-                                            <p>Scrapping data yang lebih banyak membutuhkan waktu lebih lama. Pastikan koneksi internet anda lancar</p>
+                                            <p>Crawling data yang lebih banyak membutuhkan waktu lebih lama. Pastikan koneksi internet anda lancar</p>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
@@ -96,7 +96,7 @@
         }
         $.ajax({
             type: "POST",
-            url: "{{route('scraps.store')}}",
+            url: "{{route('crawling.store')}}",
             data: {
                 _token: "{{ csrf_token() }}",
                 value: value,

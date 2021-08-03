@@ -5,31 +5,43 @@ namespace App\Http\Controllers;
 use App\Http\Requests\BrandRequest;
 use App\Models\Brand;
 use Illuminate\Http\Request;
-use Ramsey\Uuid\Uuid;
+use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\Facades\DataTables;
 
 class BrandController extends Controller
 {
-
     public function index(Request $request)
     {
         if ($request->ajax()) {
             $data = Brand::orderBy('name', 'ASC')->get();
-            return DataTables::of($data)
-                ->addIndexColumn()
-                ->addColumn('action', function ($item) {
-                    return
-                        '<button class="btn btn-primary mr-1" onclick="updateData(this)" data-id="' . $item->id . '" data-name="' . $item->name . '" >
-                            <i class="fa fa-pencil-square-o"></i> UPDATE
-                        </button>
-                        <button class="btn btn-danger" onclick="deleteData(this)" data-id="' . $item->id . '">
-                            <i class="fa fa-times"></i> DELETE
-                        </button>';
-                })
-                ->rawColumns([
-                    'action',
-                ])
-                ->make(true);
+            if (Auth::user()->can('isAdmin')) {
+                return DataTables::of($data)
+                    ->addIndexColumn()
+                    ->addColumn('action', function ($item) {
+                        return
+                            '<button class="btn btn-primary mr-1" onclick="updateData(this)" data-id="' . $item->id . '" data-name="' . $item->name . '" >
+                                <i class="fa fa-pencil-square-o"></i> UPDATE
+                            </button>
+                            <button class="btn btn-danger" onclick="deleteData(this)" data-id="' . $item->id . '">
+                                <i class="fa fa-times"></i> DELETE
+                            </button>';
+                    })
+                    ->rawColumns([
+                        'action',
+                    ])
+                    ->make(true);
+            } else {
+                return DataTables::of($data)
+                    ->addIndexColumn()
+                    ->addColumn('action', function ($item) {
+                        return
+                            '-';
+                    })
+                    ->rawColumns([
+                        'action',
+                    ])
+                    ->make(true);
+            }
         }
         return view('pages.brands.index');
     }

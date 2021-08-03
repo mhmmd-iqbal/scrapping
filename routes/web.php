@@ -29,13 +29,13 @@ Route::middleware('auth')->group(function () {
         Route::middleware('can:isAdmin')->group(function () {
             Route::resources([
                 'users'    => UserController::class,
-                'brands'   => BrandController::class,
                 'roles'    => RoleController::class,
             ]);
         });
     });
     Route::resources([
-        'scraps'        => ScrapperController::class,
+        'brands'        => BrandController::class,
+        'crawling'      => ScrapperController::class,
         'algorithm'     => AlgorithmController::class,
     ]);
     Route::get('profile', [ProfileController::class, 'index'])->name('profile');

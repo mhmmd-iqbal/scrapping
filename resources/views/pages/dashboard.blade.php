@@ -38,7 +38,7 @@
             const val = $('#title').find(':selected').val();
             $.ajax({
                 type: "GET",
-                url: "{{route('scraps.show', 'scrapId')}}".replace('scrapId', val),
+                url: "{{route('crawling.show', 'scrapId')}}".replace('scrapId', val),
                 dataType: "JSON",
                 success: function (response) {
                     if(response.data.brand != null){
@@ -87,9 +87,15 @@
                                 </h4>
                             </div>
                             <div class="card-body">
-                                <div class="d-flex justify-content-center">
-                                    <button class="btn btn-primary m-t-100 m-b-100"  onclick="openModal()" >
-                                        <i class="fa fa-search"></i> UJI JUDUL
+                                <div class="d-flex justify-content-center m-t-100 m-b-100">
+                                    <a href="{{route('brands.index')}}" class="btn btn-primary m-r-10 m-l-10">
+                                        DATA BRAND
+                                    </a>
+                                    <a href="{{route('crawling.index')}}" class="btn btn-primary m-r-10 m-l-10">
+                                        CRAWLING DATA
+                                    </a>
+                                    <button class="btn btn-primary m-r-10 m-l-10"  onclick="openModal()" >
+                                        <i class="fa fa-search"></i> UJI TITLE
                                     </button>
                                 </div>
                             </div>

@@ -111,11 +111,11 @@ class ScrapperController extends Controller
     }
 
 
-    public function show(DataTraining $scrap)
+    public function show(DataTraining $crawling)
     {
         $brands = Brand::get();
 
-        $titleArrays = explode(' ', $scrap->title);
+        $titleArrays = explode(' ', $crawling->title);
         $data = [
             'size'  => null,
             'model' => null,
@@ -144,7 +144,7 @@ class ScrapperController extends Controller
         }
 
         return response()->json([
-            "item"  => $scrap,
+            "item"  => $crawling,
             "data"  => $data
         ], 200);
     }

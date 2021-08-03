@@ -25,9 +25,9 @@
                     <a class="js-arrow" href="#">
                         <i class="fas  fa-th-large"></i>Master Data</a>
                     <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-                        <li>
+                        {{-- <li>
                             <a href="{{route('roles.index')}} ">Data Role User</a>
-                        </li>
+                        </li> --}}
                         <li>
                             <a href="{{route('users.index')}}">Data User</a>
                         </li>
@@ -36,9 +36,9 @@
                         </li>
                     </ul>
                 </li>
-                <li class="{{ (request()->is('scraps')) ? 'active' : '' }}">
-                    <a href="{{route('scraps.index')}}">
-                        <i class="fas fa-tasks"></i>Scrapping Data</a>
+                <li class="{{ (request()->is('crawling')) ? 'active' : '' }}">
+                    <a href="{{route('crawling.index')}}">
+                        <i class="fas fa-tasks"></i>Crawling Data</a>
                 </li>
                 <li class="{{ (request()->is('algorithm')) ? 'active' : '' }}">
                     <a href="{{route('algorithm.index')}}">
@@ -69,9 +69,9 @@
                     <a class="js-arrow" href="#">
                         <i class="fas  fa-th-large"></i>Master Data</a>
                     <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-                        <li>
+                        {{-- <li>
                             <a href="{{route('roles.index')}} ">Data Role User</a>
-                        </li>
+                        </li> --}}
                         <li>
                             <a href="{{route('users.index')}}">Data User</a>
                         </li>
@@ -81,9 +81,9 @@
                     </ul>
                 </li>
                 @endcan
-                <li class="{{ (request()->is('scraps')) ? 'active' : '' }}">
-                    <a href="{{route('scraps.index')}}">
-                        <i class="fas fa-tasks"></i>Scrapping Data</a>
+                <li class="{{ (request()->is('crawling')) ? 'active' : '' }}">
+                    <a href="{{route('crawling.index')}}">
+                        <i class="fas fa-tasks"></i>Crawling Data</a>
                 </li>
                 <li class="{{ (request()->is('algorithm')) ? 'active' : '' }}">
                     <a href="{{route('algorithm.index')}}">

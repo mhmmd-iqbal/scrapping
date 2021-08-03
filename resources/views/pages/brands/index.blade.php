@@ -28,6 +28,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="row">
+                                    @can('isAdmin')
                                     <div class="col-md-12 m-b-20">
                                         <div class="form-inline">
                                             <div class="form-group">
@@ -37,6 +38,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    @endcan
                                     <div class="col-md-12">
                                         <div class="table-responsive  m-b-20">
                                             <table class="table table-bordered table-striped table-active" id="list-datatables">
