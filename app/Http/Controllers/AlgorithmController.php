@@ -5,11 +5,30 @@ namespace App\Http\Controllers;
 use App\Models\Brand;
 use App\Models\DataTraining;
 use Illuminate\Http\Request;
+use DataTables;
 
 class AlgorithmController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        if ($request->ajax()) {
+            switch ($request->params) {
+                case 'model':
+                default:
+                    $data = DataTraining::ofModel(true);
+                    break;
+                case 'brand':
+                    $data = DataTraining::ofBrand(true);
+                    break;
+                case 'size':
+                    $data = DataTraining::ofSize(true);
+                    break;
+            }
+            $data = $data->get();
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->make(true);
+        }
         $countData  = DataTraining::count();
         $countBrand = DataTraining::where('brand', true)
             ->count();
@@ -67,6 +86,7 @@ class AlgorithmController extends Controller
         // $sumBrandsModel
         // ], 200);
         return view('pages.algorithm.index', compact(
+            'countData',
             'countBrand',
             'countModel',
             'countSize',

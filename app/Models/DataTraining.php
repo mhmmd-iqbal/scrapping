@@ -18,4 +18,19 @@ class DataTraining extends Model
         'model',
         'brand_id'
     ];
+
+    public function scopeOfBrand($query, $value = true)
+    {
+        return $query->where('brand', $value);
+    }
+
+    public function scopeOfSize($query, $value = true)
+    {
+        return $query->where('size', $value);
+    }
+
+    public function scopeOfModel($query, $value = true)
+    {
+        return $query->where('model', $value);
+    }
 }

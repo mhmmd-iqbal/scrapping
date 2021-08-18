@@ -31,7 +31,8 @@
                                     <div class="col-md-12 m-b-20">
                                         <div class="form-inline">
                                             <div class="form-group m-r-5">
-                                                <input name="" id="keyword" value="TELEVISI" class="form-control" placeholder="Kata Kunci Data..."></input>
+                                                <input name="" id="keyword" value="TELEVISI" class="form-control"
+                                                    placeholder="Kata Kunci Data..."></input>
                                             </div>
                                             <div class="form-group m-r-5">
                                                 <select name="" id="dataQuantity" class="form-control">
@@ -42,7 +43,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <button class="btn btn-primary" onclick="updateData()">
-                                                    Update Latest Data 
+                                                    Update Latest Data
                                                 </button>
                                             </div>
                                         </div>
@@ -50,12 +51,14 @@
                                     <div class="col-md-12">
                                         <div class="alert alert-primary">
                                             <b>PERHATIAN</b>
-                                            <p>Crawling data yang lebih banyak membutuhkan waktu lebih lama. Pastikan koneksi internet anda lancar</p>
+                                            <p>Crawling data yang lebih banyak membutuhkan waktu lebih lama. Pastikan
+                                                koneksi internet anda lancar</p>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="table-responsive  m-b-20">
-                                            <table class="table table-borderless table-striped table-active" id="list-datatables">
+                                            <table class="table table-borderless table-striped table-active"
+                                                id="list-datatables">
                                                 <thead>
                                                     <tr>
                                                         <th>No</th>
@@ -83,62 +86,74 @@
 
 @section('javascript')
 
-<script>
-
-    const updateData = () => {
-        const value = $('#dataQuantity').val()
-        const keyword = $('#keyword').val()
-        if(keyword === ''){
-            return notification(
-                'error',
-                'Kata Kunci Tidak Boleh Kosong!'
-            )
-        }
-        $.ajax({
-            type: "POST",
-            url: "{{route('crawling.store')}}",
-            data: {
-                _token: "{{ csrf_token() }}",
-                value: value,
-                keyword: keyword
-            },
-            dataType: "JSON",
-            beforeSend: function(){
-                loading('Harap Menunggu', 'Data Scrapping Sedang Di Proses...')
-            },
-            success: function (response) {
-                if(response.status == 'success'){
-                    notification(
-                        'success',
-                        'Data Berhasil Diperbarui'
-                    )
-                    listData.ajax.reload()
+    <script>
+        const updateData = () => {
+            const value = $('#dataQuantity').val()
+            const keyword = $('#keyword').val()
+            if (keyword === '') {
+                return notification(
+                    'error',
+                    'Kata Kunci Tidak Boleh Kosong!'
+                )
+            }
+            $.ajax({
+                type: "POST",
+                url: "{{ route('crawling.store') }}",
+                data: {
+                    _token: "{{ csrf_token() }}",
+                    value: value,
+                    keyword: keyword
+                },
+                dataType: "JSON",
+                beforeSend: function() {
+                    loading('Harap Menunggu', 'Data Scrapping Sedang Di Proses...')
+                },
+                success: function(response) {
+                    if (response.status == 'success') {
+                        notification(
+                            'success',
+                            'Data Berhasil Diperbarui'
+                        )
+                        listData.ajax.reload()
+                    }
                 }
-            }
-        });
-    }
+            });
+        }
 
-    const listData = $('#list-datatables').DataTable({
-        processing: true,
-        serverSide: true,
-        searching: true,
-        fixedColumns:   {
-            heightMatch: 'none'
-        },
-        ajax: {
-            url: '',
-            data: (req) => {
-               
-            }
-        },
-        columns: [
-            {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-            {data: 'title', name: 'title'},
-            {data: 'brand', name: 'brand'},
-            {data: 'size', name: 'size'},
-            {data: 'model', name: 'model'},
-        ]
-    })
+        const listData = $('#list-datatables').DataTable({
+            processing: true,
+            serverSide: true,
+            searching: true,
+            fixedColumns: {
+                heightMatch: 'none'
+            },
+            ajax: {
+                url: '',
+                data: (req) => {
 
-</script>
+                }
+            },
+            columns: [{
+                    data: 'DT_RowIndex',
+                    name: 'DT_RowIndex'
+                },
+                {
+                    data: 'title',
+                    name: 'title'
+                },
+                {
+                    data: 'brand',
+                    name: 'brand'
+                },
+                {
+                    data: 'size',
+                    name: 'size'
+                },
+                {
+                    data: 'model',
+                    name: 'model'
+                },
+            ]
+        })
+    </script>
 @endsection
