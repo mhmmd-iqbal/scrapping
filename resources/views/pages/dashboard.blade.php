@@ -34,6 +34,7 @@
                 },
             }
         });
+        
 
         const showDetail = () => {
             const val = $('#title').find(':selected').val();
@@ -100,6 +101,7 @@
                                     <button class="btn btn-primary m-r-10 m-l-10" onclick="openModal()">
                                         <i class="fa fa-search"></i> UJI TITLE
                                     </button>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -113,7 +115,7 @@
 
 @section('modal')
     <!-- modal static -->
-    <div class="modal fade" id="staticModal" tabindex="-1" role="dialog" aria-labelledby="staticModalLabel"
+    <div class="modal fade" id="staticModal" role="dialog" aria-labelledby="staticModalLabel"
         aria-hidden="true" data-backdrop="static">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
