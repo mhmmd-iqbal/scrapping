@@ -67,6 +67,38 @@
                 'show': true
             })
         }
+
+        const checkData = () => {
+            const staticTitle = $('#staticTitle').val()
+
+            $.ajax({
+                type: "POST",
+                url: "{{route('check.title')}}",
+                dataType: "JSON",
+                data: {
+                    _token: "{{ csrf_token() }}",
+                    title: staticTitle
+                },
+                success: function (response) {
+                    console.table(response);
+                    if (response.data.brand != null) {
+                        $('#showBrand').html(response.data.brand)
+                    } else {
+                        $('#showBrand').html('-')
+                    }
+                    if (response.data.size != null) {
+                        $('#showSize').html(response.data.size + ' INC')
+                    } else {
+                        $('#showSize').html('-')
+                    }
+                    if (response.data.model != null) {
+                        $('#showModel').html(response.data.model)
+                    } else {
+                        $('#showModel').html('-')
+                    }
+                }
+            });
+        }
     </script>
 @endsection
 
@@ -115,16 +147,10 @@
 
 @section('modal')
     <!-- modal static -->
-    <div class="modal fade" id="staticModal" role="dialog" aria-labelledby="staticModalLabel"
+    {{-- <div class="modal fade" id="staticModal" role="dialog" aria-labelledby="staticModalLabel"
         aria-hidden="true" data-backdrop="static">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
-                {{-- <div class="modal-header">
-                    <h5 class="modal-title" id="staticModalLabel">Uji Judul</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div> --}}
                 <div class="modal-body">
                     <div class="card">
                         <div class="card-header">
@@ -163,6 +189,61 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- end modal static -->
+
+    <div class="modal fade" id="staticModal" role="dialog" aria-labelledby="staticModalLabel"
+        aria-hidden="true" data-backdrop="static">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                {{-- <div class="modal-header">
+                    <h5 class="modal-title" id="staticModalLabel">Uji Judul</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div> --}}
+                <div class="modal-body">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col-md-10 m-t-20 m-b-20 form-group">
+                                    <input type="text" class="form-control" id="staticTitle">
+                                </div>
+                                <div class="col-md-2 m-t-20 m-b-20 form-group">
+                                    <button class="btn btn-primary" onclick="checkData()">
+                                        CEK DATA
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12 m-b-20">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered">
+                                            <tr>
+                                                <th style="width: 20%">Merek</th>
+                                                <td id="showBrand"></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Ukuran</th>
+                                                <td id="showSize"></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Model</th>
+                                                <td id="showModel"></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

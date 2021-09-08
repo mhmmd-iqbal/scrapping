@@ -148,4 +148,41 @@ class ScrapperController extends Controller
             "data"  => $data
         ], 200);
     }
+
+    public function checkOnTitle(Request $request)
+    {
+        $brands = Brand::get();
+
+        $titleArrays = explode(' ', $request->title);
+        $data = [
+            'size'  => null,
+            'model' => null,
+            'brand' => null
+        ];
+        foreach ($titleArrays as $i => $titleArray) {
+
+            foreach ($brands as $brand) {
+                if ($brand->name === $titleArray) {
+                    $data['brand'] = $brand->name;
+                }
+            }
+
+            if (strpos($titleArray, 'INC') !== false) {
+                if (is_numeric($titleArrays[$i - 1])) {
+                    $data['size'] = $titleArrays[$i - 1];
+                }
+            }
+        }
+
+        foreach ($titleArrays as $i => $titleArray) {
+            if (preg_match('/[A-Za-z]/', $titleArray) && preg_match('/[0-9]/', $titleArray)) {
+                $data['model'] = $titleArray;
+                break;
+            }
+        }
+
+        return response()->json([
+            "data"  => $data
+        ], 200);
+    }
 }
