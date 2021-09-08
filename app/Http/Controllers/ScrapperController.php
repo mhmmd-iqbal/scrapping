@@ -153,7 +153,7 @@ class ScrapperController extends Controller
     {
         $brands = Brand::get();
 
-        $titleArrays = explode(' ', $request->title);
+        $titleArrays = explode(' ', strtoupper($request->title));
         $data = [
             'size'  => null,
             'model' => null,
