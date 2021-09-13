@@ -31,9 +31,9 @@
                         <li>
                             <a href="{{route('users.index')}}">Data User</a>
                         </li>
-                        <li>
+                        {{-- <li>
                             <a href="{{route('brands.index')}}">Data Brand</a>
-                        </li>
+                        </li> --}}
                     </ul>
                 </li>
                 <li class="{{ (request()->is('crawling')) ? 'active' : '' }}">
@@ -75,9 +75,9 @@
                         <li>
                             <a href="{{route('users.index')}}">Data User</a>
                         </li>
-                        <li>
+                        {{-- <li>
                             <a href="{{route('brands.index')}}">Data Brand</a>
-                        </li>
+                        </li> --}}
                     </ul>
                 </li>
                 @endcan
