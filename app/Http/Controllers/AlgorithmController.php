@@ -74,17 +74,6 @@ class AlgorithmController extends Controller
             $sumBrandsModel *= $data['variable_class'];
         }
 
-        // return response()->json([
-        // $classBrand,
-        // $classModel,
-        // $classSize,
-        // $brandsBrand,
-        // $brandsSize,
-        // $brandsModel,
-        // $sumBrandsBrand,
-        // $sumBrandsSize,
-        // $sumBrandsModel
-        // ], 200);
         return view('pages.algorithm.index', compact(
             'countData',
             'countBrand',

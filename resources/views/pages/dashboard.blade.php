@@ -211,7 +211,7 @@
                                 </div>
                                 <div class="col-md-2 m-t-20 m-b-20 form-group">
                                     <button class="btn btn-primary" onclick="checkData()">
-                                        CEK DATA
+                                        AMBIL NER
                                     </button>
                                 </div>
                             </div>
