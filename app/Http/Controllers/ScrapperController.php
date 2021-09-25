@@ -171,6 +171,9 @@ class ScrapperController extends Controller
                 if (is_numeric($titleArrays[$i - 1])) {
                     $data['size'] = $titleArrays[$i - 1];
                 }
+                else{
+                    $data['size'] = str_replace('INC', '', $titleArrays[$i]);
+                }
             }
         }
 
