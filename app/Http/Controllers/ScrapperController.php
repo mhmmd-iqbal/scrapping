@@ -152,8 +152,8 @@ class ScrapperController extends Controller
     public function checkOnTitle(Request $request)
     {
         $brands = Brand::get();
-
-        $titleArrays = explode(' ', strtoupper($request->title));
+        $title  = preg_replace('/[^A-Za-z0-9\- ]/', '', $request->title);
+        $titleArrays = explode(' ', strtoupper($title));
         $data = [
             'size'  => null,
             'model' => null,
@@ -167,14 +167,35 @@ class ScrapperController extends Controller
                 }
             }
 
-            if (strpos($titleArray, 'INC') !== false) {
+            if (strpos($titleArray, 'INCHI') !== false) {
+                if (is_numeric($titleArrays[$i - 1])) {
+                    $data['size'] = $titleArrays[$i - 1];
+                }
+                else{
+                    $data['size'] = str_replace('INCHI', '', $titleArrays[$i]);
+                }
+            } else if(strpos($titleArray, 'INCH') !== false) {
+                if (is_numeric($titleArrays[$i - 1])) {
+                    $data['size'] = $titleArrays[$i - 1];
+                }
+                else{
+                    $data['size'] = str_replace('INCH', '', $titleArrays[$i]);
+                }
+            } else if(strpos($titleArray, 'INCI') !== false) {
+                if (is_numeric($titleArrays[$i - 1])) {
+                    $data['size'] = $titleArrays[$i - 1];
+                }
+                else{
+                    $data['size'] = str_replace('INCI', '', $titleArrays[$i]);
+                }
+            } else if (strpos($titleArray, 'INC') !== false) {
                 if (is_numeric($titleArrays[$i - 1])) {
                     $data['size'] = $titleArrays[$i - 1];
                 }
                 else{
                     $data['size'] = str_replace('INC', '', $titleArrays[$i]);
                 }
-            }
+            } 
         }
 
         foreach ($titleArrays as $i => $titleArray) {

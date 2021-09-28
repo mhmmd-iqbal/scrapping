@@ -49,7 +49,7 @@
                         $('#showBrand').html('-')
                     }
                     if (response.data.size != null) {
-                        $('#showSize').html(response.data.size + ' INC')
+                        $('#showSize').html(response.data.size)
                     } else {
                         $('#showSize').html('-')
                     }
@@ -87,7 +87,7 @@
                         $('#showBrand').html('-')
                     }
                     if (response.data.size != null) {
-                        $('#showSize').html(response.data.size + ' INC')
+                        $('#showSize').html(response.data.size )
                     } else {
                         $('#showSize').html('-')
                     }
