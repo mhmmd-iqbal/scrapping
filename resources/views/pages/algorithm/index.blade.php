@@ -93,20 +93,24 @@
                                                         @php
                                                             $total = 0;
                                                             $totalBrand = 0;
+                                                            $brandCases = [];
+                                                            $sizeCases  = [];
+                                                            $modelCases = [];
                                                         @endphp
-                                                        @foreach ($brandsBrand as $data)
+                                                        @foreach ($brandsBrand as $index => $data)
                                                             <tr>
                                                                 <td>{{ $data->name }}</td>
                                                                 <td>{{ $data->data_trainings_count }}</td>
                                                                 <td align="right">{{ $data->data_trainings_count }} /
                                                                     {{ $countBrand }}</td>
                                                                 <td align="right">
-                                                                    {{ number_format($data->data_trainings_count / $countBrand, 2, ',', '') }}
+                                                                    {{ number_format($data->data_trainings_count / $countBrand, 4, ',', '') }}
                                                                 </td>
                                                             </tr>
                                                             @php
                                                                 $total += $data->data_trainings_count;
                                                                 $totalBrand += $data->data_trainings_count / $countBrand;
+                                                                $brandCases[$index] = round($data->data_trainings_count / $countBrand, 4);
                                                             @endphp
                                                         @endforeach
                                                     </tbody>
@@ -133,21 +137,32 @@
                                                             $total = 0;
                                                             $totalSize = 0;
                                                         @endphp
-                                                        @foreach ($brandsSize as $data)
+                                                        @foreach ($brandsSize as $index => $data)
                                                             <tr>
                                                                 <td>{{ $data->name }}</td>
                                                                 <td>{{ $data->data_trainings_count }}</td>
                                                                 <td align="right">{{ $data->data_trainings_count }} /
                                                                     {{ $countSize }}</td>
                                                                 <td align="right">
-                                                                    {{ number_format($data->data_trainings_count / $countSize, 2, ',', '') }}
+                                                                    {{ number_format($data->data_trainings_count / $countSize, 4, ',', '') }}
                                                                 </td>
                                                             </tr>
                                                             @php
-                                                                $total += $data->data_trainings_count;
-                                                                $totalSize += $data->data_trainings_count / $countSize;
+                                                                $total              += $data->data_trainings_count;
+                                                                $totalSize          += $data->data_trainings_count / $countSize;
+                                                                $sizeCases[$index]  = round($data->data_trainings_count / $countSize, 4);
                                                             @endphp
                                                         @endforeach
+                                                        <tr>
+                                                            <td>Tidak Ada Merek</td>
+                                                            <td>{{$countSize - $total}}</td>
+                                                            <td align="right">{{ $countSize - $total }} /
+                                                                    {{ $countSize }}</td>
+                                                            <td align="right">{{ number_format(($countSize - $total) / $countSize, 4, ',', '') }}</td>
+                                                        </tr>
+                                                        @php
+                                                            $modelCases[$index +1] =  round(($countSize - $total) / $countSize, 4);
+                                                        @endphp
                                                     </tbody>
                                                     <tfoot>
                                                         <tr>
@@ -172,21 +187,32 @@
                                                             $total = 0;
                                                             $totalModel = 0;
                                                         @endphp
-                                                        @foreach ($brandsModel as $data)
+                                                        @foreach ($brandsModel as $index => $data)
                                                             <tr>
                                                                 <td>{{ $data->name }}</td>
                                                                 <td>{{ $data->data_trainings_count }}</td>
                                                                 <td align="right">{{ $data->data_trainings_count }} /
                                                                     {{ $countModel }}</td>
                                                                 <td align="right">
-                                                                    {{ number_format($data->data_trainings_count / $countModel, 2, ',', '') }}
+                                                                    {{ number_format($data->data_trainings_count / $countModel, 4, ',', '') }}
                                                                 </td>
                                                             </tr>
                                                             @php
-                                                                $total += $data->data_trainings_count;
-                                                                $totalModel += $data->data_trainings_count / $countModel;
+                                                                $total              += $data->data_trainings_count;
+                                                                $totalModel         += $data->data_trainings_count / $countModel;
+                                                                $modelCases[$index] =  round($data->data_trainings_count / $countModel, 4);
                                                             @endphp
                                                         @endforeach
+                                                        <tr>
+                                                            <td>Tidak Ada Merek</td>
+                                                            <td>{{$countModel - $total}}</td>
+                                                            <td align="right">{{ $countModel - $total }} /
+                                                                    {{ $countModel }}</td>
+                                                            <td align="right">{{ number_format(($countModel - $total) / $countModel, 4, ',', '') }}</td>
+                                                        </tr>
+                                                        @php
+                                                            $modelCases[$index +1] =  round(($countModel - $total) / $countModel, 4);
+                                                        @endphp
                                                     </tbody>
                                                     <tfoot>
                                                         <tr>
@@ -199,6 +225,75 @@
                                                 </table>
                                             </div>
                                         </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 m-t-20">
+                        <div class="card">
+                            <div class="card-header">
+                                <strong class="card-title">Pencarian Data X Berdasarkan Class</strong>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-12 pl-5">
+                                        <ol type="A">
+                                            <li>
+                                                <div class="row p-t-30">
+                                                    <div class="col-2">MEREK</div>
+                                                    <div class="col-10"> 
+                                                    @php
+                                                        $multiplyBrandCases = 1;
+                                                    @endphp
+                                                    (
+                                                        @foreach ($brandCases as $index => $case)
+                                                            {{$case}} {{sizeof($brandCases) !== $index + 1 ? '*' : ''}}
+                                                            @php
+                                                                $multiplyBrandCases *= $case
+                                                            @endphp
+                                                        @endforeach
+                                                    ) * {{$classBrand}} = <b> {{ $multiplyBrandCases * $classBrand }} </b>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="row p-t-30">
+                                                    <div class="col-2">UKURAN</div>
+                                                    <div class="col-10">
+                                                    @php
+                                                        $multiplySizeCases = 1;
+                                                    @endphp
+                                                    (
+                                                        @foreach ($sizeCases as $index => $case)
+                                                            {{$case}} {{sizeof($sizeCases) !== $index + 1 ? '*' : ''}}
+                                                            @php
+                                                                $multiplySizeCases *= $case
+                                                            @endphp
+                                                        @endforeach
+                                                    ) * {{$classSize}} = <b> {{ $multiplySizeCases * $classSize }} </b>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="row p-t-30">
+                                                    <div class="col-2">MODEL</div>
+                                                    <div class="col-10">
+                                                    @php
+                                                        $multiplyModelCases = 1;
+                                                    @endphp
+                                                    (
+                                                        @foreach ($modelCases as $index => $case)
+                                                            {{$case}} {{sizeof($modelCases) !== $index + 1 ? '*' : ''}}
+                                                            @php
+                                                                $multiplyModelCases *= $case
+                                                            @endphp
+                                                        @endforeach
+                                                    ) * {{$classModel}} = <b> {{ $multiplyModelCases * $classModel }} </b>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ol>
                                     </div>
                                 </div>
                             </div>
