@@ -129,11 +129,33 @@ class ScrapperController extends Controller
                 }
             }
 
-            if (strpos($titleArray, 'INC') !== false) {
+            if (strpos($titleArray, 'INCHI') !== false) {
                 if (is_numeric($titleArrays[$i - 1])) {
                     $data['size'] = $titleArrays[$i - 1];
                 }
-            }
+                // else{
+                //     $data['size'] = str_replace('INCHI', '', $titleArrays[$i]);
+                // }
+            } else if(strpos($titleArray, 'INCH') !== false) {
+                if (is_numeric($titleArrays[$i - 1])) {
+                    $data['size'] = $titleArrays[$i - 1];
+                }
+                // else{
+                //     $data['size'] = str_replace('INCH', '', $titleArrays[$i]);
+                // }
+            } else if(strpos($titleArray, 'INCI') !== false) {
+                if (is_numeric($titleArrays[$i - 1])) {
+                    $data['size'] = $titleArrays[$i - 1];
+                }
+                // else{
+                //     $data['size'] = str_replace('INCI', '', $titleArrays[$i]);
+                // }
+            } 
+            // else if (strpos($titleArray, 'INC') !== false) {
+            //     if (is_numeric($titleArrays[$i - 1])) {
+            //         $data['size'] = $titleArrays[$i - 1];
+            //     }
+            // }
         }
 
         foreach ($titleArrays as $i => $titleArray) {
@@ -188,14 +210,15 @@ class ScrapperController extends Controller
                 else{
                     $data['size'] = str_replace('INCI', '', $titleArrays[$i]);
                 }
-            } else if (strpos($titleArray, 'INC') !== false) {
-                if (is_numeric($titleArrays[$i - 1])) {
-                    $data['size'] = $titleArrays[$i - 1];
-                }
-                else{
-                    $data['size'] = str_replace('INC', '', $titleArrays[$i]);
-                }
             } 
+            // else if (strpos($titleArray, 'INC') !== false) {
+            //     if (is_numeric($titleArrays[$i - 1])) {
+            //         $data['size'] = $titleArrays[$i - 1];
+            //     }
+            //     else{
+            //         $data['size'] = str_replace('INC', '', $titleArrays[$i]);
+            //     }
+            // } 
         }
 
         foreach ($titleArrays as $i => $titleArray) {
