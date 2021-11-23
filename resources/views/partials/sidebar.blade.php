@@ -4,7 +4,7 @@
         <div class="container-fluid">
             <div class="header-mobile-inner">
                 <a class="logo" href="index.html">
-                    <img src="images/icon/logo.png" alt="CoolAdmin" />
+                    <img src="{{{URL::asset('template/assets/images/logo.png')}}}" alt="CoolAdmin" />
                 </a>
                 <button class="hamburger hamburger--slider" type="button">
                     <span class="hamburger-box">
@@ -54,7 +54,10 @@
 <aside class="menu-sidebar d-none d-lg-block">
     <div class="logo">
         <a href="#">
-            <img src="images/icon/logo.png" alt="Cool Admin" />
+            <div class="d-flex justify-content-between">
+                <img src="{{{URL::asset('template/images/icon/logo.png')}}}" width="60" height="auto" alt="Cool Admin" />
+                <img src="{{{URL::asset('template/images/icon/logo-text.png')}}}" width="150" height="auto" alt="Cool Admin" />
+            </div>
         </a>
     </div>
     <div class="menu-sidebar__content js-scrollbar1">
