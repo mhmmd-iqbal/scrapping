@@ -29,7 +29,7 @@
                     <div class="col-md-12 m-t-20">
                         <div class="card">
                             <div class="card-header">
-                                <strong class="card-title">Menghitung Jumlah Kelas/Label P|H</strong>
+                                <strong class="card-title">Membaca Data Training P(H)</strong>
                             </div>
                             <div class="card-body">
                                 <div class="row">
@@ -63,6 +63,112 @@
                                                             <button class="btn btn-info" onclick="detail('model')">
                                                                 Lihat Data</button>
                                                         </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 m-t-20">
+                        <div class="card">
+                            <div class="card-header">
+                                <strong class="card-title">Membaca Jumlah Kelas P(X)</strong>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-12 m-b-20">
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <table class="table table-bordered">
+                                                    <tr>
+                                                        <th>No</th>
+                                                        <th>Brand</th>
+                                                        <th>Merek</th>
+                                                    </tr>
+                                                    @php
+                                                        $total = 0;
+                                                        $i = 1;
+                                                    @endphp
+                                                    @foreach ($brandsBrand as $index => $data)
+                                                    <tr>
+                                                        <td>{{$i++}}</td>
+                                                        <td>{{ $data->name }}</td>
+                                                        <td>{{ $data->data_trainings_count }}</td>
+                                                    </tr>
+                                                    @php
+                                                        $total += $data->data_trainings_count;
+                                                    @endphp
+                                                    @endforeach
+                                                    <tr>
+                                                        <th colspan="2">TOTAL</th>
+                                                        <th>{{ $total }}</th>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                            <div class="col-4">
+                                                <table class="table table-bordered">
+                                                    <tr>
+                                                        <th>No</th>
+                                                        <th>Brand</th>
+                                                        <th>Ukuran</th>
+                                                    </tr>
+                                                    @php
+                                                        $total = 0;
+                                                        $i = 1;
+                                                    @endphp
+                                                    @foreach ($brandsSize as $index => $data)
+                                                        <tr>
+                                                            <td>{{$i++}}</td>
+                                                            <td>{{ $data->name }}</td>
+                                                            <td>{{ $data->data_trainings_count }}</td>
+                                                        </tr>
+                                                        @php
+                                                            $total += $data->data_trainings_count;
+                                                        @endphp
+                                                    @endforeach
+                                                    <tr>
+                                                        <td>{{$i++}}</td>
+                                                        <td>Tidak Ada Merek</td>
+                                                        <td>{{$countSize - $total}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th colspan="2">TOTAL</th>
+                                                        <th>{{ $total + ($countSize - $total)}}</th>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                            <div class="col-4">
+                                                <table class="table table-bordered">
+                                                    <tr>
+                                                        <th>No</th>
+                                                        <th>Brand</th>
+                                                        <th>Model</th>
+                                                    </tr>
+                                                    @php
+                                                        $total = 0;
+                                                        $i = 1;
+                                                    @endphp
+                                                    @foreach ($brandsModel as $index => $data)
+                                                        <tr>
+                                                            <td>{{$i++}}</td>
+                                                            <td>{{ $data->name }}</td>
+                                                            <td>{{ $data->data_trainings_count }}</td>
+                                                        </tr>
+                                                        @php
+                                                            $total += $data->data_trainings_count;
+                                                        @endphp
+                                                    @endforeach
+                                                    <tr>
+                                                        <td>{{$i++}}</td>
+                                                        <td>Tidak Ada Merek</td>
+                                                        <td>{{$countModel - $total}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th colspan="2">TOTAL</th>
+                                                        <th>{{ $total + ($countModel - $total)}}</th>
                                                     </tr>
                                                 </table>
                                             </div>

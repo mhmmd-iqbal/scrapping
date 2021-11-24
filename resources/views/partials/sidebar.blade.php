@@ -36,10 +36,10 @@
                         </li> --}}
                     </ul>
                 </li>
-                <li class="{{ (request()->is('crawling')) ? 'active' : '' }}">
+                {{-- <li class="{{ (request()->is('crawling')) ? 'active' : '' }}">
                     <a href="{{route('crawling.index')}}">
                         <i class="fas fa-tasks"></i>Crawling Data</a>
-                </li>
+                </li> --}}
                 <li class="{{ (request()->is('algorithm')) ? 'active' : '' }}">
                     <a href="{{route('algorithm.index')}}">
                         <i class="fas fa-code"></i>Algoritma</a>
@@ -84,10 +84,10 @@
                     </ul>
                 </li>
                 @endcan
-                <li class="{{ (request()->is('crawling')) ? 'active' : '' }}">
+                {{-- <li class="{{ (request()->is('crawling')) ? 'active' : '' }}">
                     <a href="{{route('crawling.index')}}">
                         <i class="fas fa-tasks"></i>Crawling Data</a>
-                </li>
+                </li> --}}
                 <li class="{{ (request()->is('algorithm')) ? 'active' : '' }}">
                     <a href="{{route('algorithm.index')}}">
                         <i class="fas fa-code"></i>Algoritma</a>
