@@ -267,7 +267,7 @@
                                                             <td align="right">{{ number_format(($countSize - $total) / $countSize, 4, ',', '') }}</td>
                                                         </tr>
                                                         @php
-                                                            $modelCases[$index +1] =  round(($countSize - $total) / $countSize, 4);
+                                                            $sizeCases[$index +1] =  round(($countSize - $total) / $countSize, 4);
                                                         @endphp
                                                     </tbody>
                                                     <tfoot>
@@ -400,6 +400,66 @@
                                                 </div>
                                             </li>
                                         </ol>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 m-t-20">
+                        <div class="card">
+                            <div class="card-header">
+                                <strong class="card-title">Table Pengujian Akurasi</strong>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-12 pl-5">
+                                        <table class="table table-bordered">
+                                            <tr>
+                                                <th>Fitur</th>
+                                                <th>Jumlah Data</th>
+                                                <th>persentase</th>
+                                            </tr>
+                                            <tr>
+                                                <td>Merek + ukuran + model</td>
+                                                <td>{{$countBrandSizeModel}}</td>
+                                                <td>{{$countBrandSizeModel/$countData*100}}%</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Merek + ukuran</td>
+                                                <td>{{$countBrandSize}}</td>
+                                                <td>{{$countBrandSize/$countData*100}}%</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Merek + model</td>
+                                                <td>{{$countBrandModel}}</td>
+                                                <td>{{$countBrandModel/$countData*100}}%</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Ukuran + model</td>
+                                                <td>{{$countSizeModel}}</td>
+                                                <td>{{$countSizeModel/$countData*100}}%</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Merek</td>
+                                                <td>{{$countBrand}}</td>
+                                                <td>{{$countBrand/$countData*100}}%</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Ukuran</td>
+                                                <td>{{$countSize}}</td>
+                                                <td>{{$countSize/$countData*100}}%</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Model</td>
+                                                <td>{{$countModel}}</td>
+                                                <td>{{$countModel/$countData*100}}%</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Tidak memiliki semua fitur</td>
+                                                <td>{{$countNoAll}}</td>
+                                                <td>{{$countNoAll/$countData*100}}%</td>
+                                            </tr>
+                                        </table>
                                     </div>
                                 </div>
                             </div>

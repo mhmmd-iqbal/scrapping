@@ -3,8 +3,11 @@
     <div class="header-mobile__bar">
         <div class="container-fluid">
             <div class="header-mobile-inner">
-                <a class="logo" href="index.html">
-                    <img src="{{{URL::asset('template/assets/images/logo.png')}}}" alt="CoolAdmin" />
+                <a href="#">
+                    <div class="d-flex justify-content-between">
+                        <img src="{{{URL::asset('template/images/icon/logo.png')}}}" width="60" height="auto" alt="Cool Admin" />
+                        <img src="{{{URL::asset('template/images/icon/logo-text.png')}}}" width="150" height="auto" alt="Cool Admin" />
+                    </div>
                 </a>
                 <button class="hamburger hamburger--slider" type="button">
                     <span class="hamburger-box">
@@ -91,6 +94,10 @@
                 <li class="{{ (request()->is('algorithm')) ? 'active' : '' }}">
                     <a href="{{route('algorithm.index')}}">
                         <i class="fas fa-code"></i>Algoritma</a>
+                </li>
+                <li class="{{ (request()->is('about')) ? 'active' : '' }}">
+                    <a href="{{route('about')}}">
+                        <i class="fas fa-exclamation"></i>Tentang</a>
                 </li>
             </ul>
         </nav>

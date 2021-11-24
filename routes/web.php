@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AlgorithmController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\DashboardController;
@@ -40,6 +41,8 @@ Route::middleware('auth')->group(function () {
     Route::post('get-static', [ScrapperController::class, 'checkOnTitle'])->name('check.title');
     Route::get('profile', [ProfileController::class, 'index'])->name('profile');
     Route::post('profile', [ProfileController::class, 'update'])->name('profile');
+
+    Route::get('about', [AboutController::class, 'index'])->name('about');
 });
 
 

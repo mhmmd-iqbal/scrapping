@@ -30,12 +30,36 @@ class AlgorithmController extends Controller
                 ->make(true);
         }
         $countData  = DataTraining::count();
+
+        $countBrandSizeModel = DataTraining::where('brand', true)
+            ->where('size', true)
+            ->where('model', true)
+            ->count();
+
+        $countBrandSize = DataTraining::where('brand', true)
+            ->where('size', true)
+            ->count();
+
+        $countBrandModel = DataTraining::where('brand', true)
+            ->where('model', true)
+            ->count();
+
+        $countSizeModel = DataTraining::where('size', true)
+            ->where('model', true)
+            ->count();
+
+        $countNoAll = DataTraining::where('brand', false)
+            ->where('size', false)
+            ->where('model', false)
+            ->count();
+
         $countBrand = DataTraining::where('brand', true)
             ->count();
         $countSize  = DataTraining::where('size', true)
             ->count();
         $countModel = DataTraining::where('model', true)
             ->count();
+
 
         $classBrand = $countBrand / $countData;
         $classSize  = $countSize / $countData;
@@ -88,6 +112,11 @@ class AlgorithmController extends Controller
             'sumBrandsBrand',
             'sumBrandsSize',
             'sumBrandsModel',
+            'countBrandSizeModel',
+            'countBrandSize',
+            'countBrandModel',
+            'countSizeModel',
+            'countNoAll'
         ));
     }
 }
