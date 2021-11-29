@@ -29,7 +29,7 @@
                     <div class="col-md-12 m-t-20">
                         <div class="card">
                             <div class="card-header">
-                                <strong class="card-title">Membaca Data Training P(H)</strong>
+                                <strong class="card-title">1. Membaca Data Training P(H)</strong>
                             </div>
                             <div class="card-body">
                                 <div class="row">
@@ -75,7 +75,7 @@
                     <div class="col-md-12 m-t-20">
                         <div class="card">
                             <div class="card-header">
-                                <strong class="card-title">Membaca Jumlah Kelas P(X)</strong>
+                                <strong class="card-title">2. Membaca Jumlah Kelas P(X)</strong>
                             </div>
                             <div class="card-body">
                                 <div class="row">
@@ -181,7 +181,7 @@
                     <div class="col-md-12 m-t-20">
                         <div class="card">
                             <div class="card-header">
-                                <strong class="card-title">Jumlah Kasus Perkelas</strong>
+                                <strong class="card-title">3. Jumlah Kasus Perkelas</strong>
                             </div>
                             <div class="card-body">
                                 <div class="row">
@@ -339,7 +339,7 @@
                     <div class="col-md-12 m-t-20">
                         <div class="card">
                             <div class="card-header">
-                                <strong class="card-title">Pencarian Data X Berdasarkan Class</strong>
+                                <strong class="card-title">4. Pencarian Data X Berdasarkan Class</strong>
                             </div>
                             <div class="card-body">
                                 <div class="row">
@@ -421,43 +421,43 @@
                                             </tr>
                                             <tr>
                                                 <td>Merek + ukuran + model</td>
-                                                <td>{{$countBrandSizeModel}}</td>
-                                                <td>{{$countBrandSizeModel/$countData*100}}%</td>
+                                                <td>{{$limitCountData['BrandSizeModel']}}</td>
+                                                <td>{{$limitCountData['BrandSizeModel']/100*100}}%</td>
                                             </tr>
                                             <tr>
                                                 <td>Merek + ukuran</td>
-                                                <td>{{$countBrandSize}}</td>
-                                                <td>{{$countBrandSize/$countData*100}}%</td>
+                                                <td>{{$limitCountData['BrandSize']}}</td>
+                                                <td>{{$limitCountData['BrandSize']/100*100}}%</td>
                                             </tr>
                                             <tr>
                                                 <td>Merek + model</td>
-                                                <td>{{$countBrandModel}}</td>
-                                                <td>{{$countBrandModel/$countData*100}}%</td>
+                                                <td>{{$limitCountData['BrandModel']}}</td>
+                                                <td>{{$limitCountData['BrandModel']/100*100}}%</td>
                                             </tr>
                                             <tr>
                                                 <td>Ukuran + model</td>
-                                                <td>{{$countSizeModel}}</td>
-                                                <td>{{$countSizeModel/$countData*100}}%</td>
+                                                <td>{{$limitCountData['SizeModel']}}</td>
+                                                <td>{{$limitCountData['SizeModel']/100*100}}%</td>
                                             </tr>
                                             <tr>
                                                 <td>Merek</td>
-                                                <td>{{$countBrand}}</td>
-                                                <td>{{$countBrand/$countData*100}}%</td>
+                                                <td>{{$limitCountData['Brand']}}</td>
+                                                <td>{{$limitCountData['Brand']/100*100}}%</td>
                                             </tr>
                                             <tr>
                                                 <td>Ukuran</td>
-                                                <td>{{$countSize}}</td>
-                                                <td>{{$countSize/$countData*100}}%</td>
+                                                <td>{{$limitCountData['Size']}}</td>
+                                                <td>{{$limitCountData['Size']/100*100}}%</td>
                                             </tr>
                                             <tr>
                                                 <td>Model</td>
-                                                <td>{{$countModel}}</td>
-                                                <td>{{$countModel/$countData*100}}%</td>
+                                                <td>{{$limitCountData['Model']}}</td>
+                                                <td>{{$limitCountData['Model']/100*100}}%</td>
                                             </tr>
                                             <tr>
                                                 <td>Tidak memiliki semua fitur</td>
-                                                <td>{{$countNoAll}}</td>
-                                                <td>{{$countNoAll/$countData*100}}%</td>
+                                                <td>{{$limitCountData['NoAll']}}</td>
+                                                <td>{{$limitCountData['NoAll']/100*100}}%</td>
                                             </tr>
                                         </table>
                                     </div>
