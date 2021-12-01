@@ -223,7 +223,7 @@
                                                     <tfoot>
                                                         <tr>
                                                             <th>TOTAL</th>
-                                                            <th>{{ $total }}</th>
+                                                            <th>{{ $total  }}</th>
                                                             <th colspan="2" style="text-align: right">
                                                                 {{ number_format($totalBrand, 2, ',', '') }}</th>
                                                         </tr>
@@ -267,6 +267,8 @@
                                                             <td align="right">{{ number_format(($countSize - $total) / $countSize, 4, ',', '') }}</td>
                                                         </tr>
                                                         @php
+                                                            $total              += $countSize - $total;
+                                                            $totalSize          += ($countSize - $total) / $countSize;
                                                             $sizeCases[$index +1] =  round(($countSize - $total) / $countSize, 4);
                                                         @endphp
                                                     </tbody>
@@ -317,13 +319,15 @@
                                                             <td align="right">{{ number_format(($countModel - $total) / $countModel, 4, ',', '') }}</td>
                                                         </tr>
                                                         @php
+                                                            $total              += $countModel - $total;
+                                                            $totalSize          += ($countModel - $total) / $countSize;
                                                             $modelCases[$index +1] =  round(($countModel - $total) / $countModel, 4);
                                                         @endphp
                                                     </tbody>
                                                     <tfoot>
                                                         <tr>
                                                             <th>TOTAL</th>
-                                                            <th>{{ $total }}</th>
+                                                            <th>{{ $total  }}</th>
                                                             <th colspan="2" style="text-align: right">
                                                                 {{ number_format($totalModel, 2, ',', '') }}</th>
                                                         </tr>

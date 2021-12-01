@@ -47,9 +47,9 @@ class AlgorithmController extends Controller
             else if($data->size && $data->brand) $limitCountData['BrandSize']++; 
             else if($data->model && $data->brand) $limitCountData['BrandModel']++; 
             else if($data->size && $data->model) $limitCountData['SizeModel']++; 
-            else if($data->model) $limitCountData['Model']++; 
-            else if($data->size) $limitCountData['Size']++; 
             else if($data->brand) $limitCountData['Brand']++; 
+            else if($data->size) $limitCountData['Size']++; 
+            else if($data->model) $limitCountData['Model']++; 
             else $limitCountData['NoAll']++;
         }
 
