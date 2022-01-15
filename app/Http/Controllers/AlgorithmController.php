@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Brand;
 use App\Models\DataTraining;
+use App\Traits\CalculationTrait;
 use Illuminate\Http\Request;
 use DataTables;
 
@@ -31,27 +32,8 @@ class AlgorithmController extends Controller
         }
         $countData  = DataTraining::count();
 
-        $getLimitData = DataTraining::limit(100)->orderBy('id', 'ASC')->get();
-        $limitCountData = [
-            'BrandSizeModel'    => 0,
-            'BrandSize'         => 0,
-            'BrandModel'        => 0,
-            'SizeModel'         => 0,
-            'Brand'             => 0,
-            'Size'              => 0,
-            'Model'             => 0,
-            'NoAll'             => 0,
-        ];
-        foreach ($getLimitData as $data) {
-            if($data->size && $data->model && $data->brand) $limitCountData['BrandSizeModel']++; 
-            else if($data->size && $data->brand) $limitCountData['BrandSize']++; 
-            else if($data->model && $data->brand) $limitCountData['BrandModel']++; 
-            else if($data->size && $data->model) $limitCountData['SizeModel']++; 
-            else if($data->brand) $limitCountData['Brand']++; 
-            else if($data->size) $limitCountData['Size']++; 
-            else if($data->model) $limitCountData['Model']++; 
-            else $limitCountData['NoAll']++;
-        }
+        $accurationTest = CalculationTrait::accurationTest();
+        // return response()->json($accurationTest);
 
         $countBrand = DataTraining::where('brand', true)
             ->count();
@@ -112,7 +94,7 @@ class AlgorithmController extends Controller
             'sumBrandsBrand',
             'sumBrandsSize',
             'sumBrandsModel',
-            'limitCountData'
+            'accurationTest',
         ));
     }
 }
