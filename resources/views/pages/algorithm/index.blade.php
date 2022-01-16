@@ -9,10 +9,6 @@
             overflow: auto;
         }
 
-        th{
-            text-align: center;
-        }
-
     </style>
 @endsection
 
@@ -414,7 +410,7 @@
                             <div class="card-header">
                                 <strong class="card-title">Table Pengujian Akurasi</strong>
                             </div>
-                            {{-- <div class="card-body">
+                            <div class="card-body">
                                 <div class="row">
                                     <div class="col-12 pl-5">
                                         <table class="table table-bordered">
@@ -465,53 +461,6 @@
                                             </tr>
                                         </table>
                                     </div>
-                                </div>
-                            </div> --}}
-                            <div class="card-body">
-                                <div class="row">
-                                   <div class="col-12 pl-5">
-                                        <table class="table table-bordered">
-                                            <tr>
-                                                <th rowspan="2">No</th>
-                                                <th rowspan="2">Fitur</th>
-                                                <th colspan="4">Jumlah data</th>
-                                            </tr>
-                                            <tr>
-                                                <th>T = F</th>
-                                                <th>T = T</th>
-                                                <th>F = F</th>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Mr + U + Md</td>
-                                                <td style="text-align:right;" valign="middle">{{$accurationTest['all']['TF']}}</td>
-                                                <td style="text-align:right;" valign="middle">{{$accurationTest['all']['TT']}}</td>
-                                                <td style="text-align: right">?</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>
-                                                    <div>Mr + U</div>
-                                                    <div>Mr + Md</div>
-                                                    <div>U + Md</div>
-                                                </td>
-                                                <td style="text-align:right;" valign="middle">{{$accurationTest['part']['TF']}}</td>
-                                                <td style="text-align:right;" valign="middle">{{$accurationTest['part']['TT']}}</td>
-                                                <td style="text-align: right">?</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>
-                                                    <div>Mr</div>
-                                                    <div>Md</div>
-                                                    <div>U</div>
-                                                </td>
-                                                <td style="text-align:right;" valign="middle">{{$accurationTest['single']['TF']}}</td>
-                                                <td style="text-align:right;" valign="middle">{{$accurationTest['single']['TT']}}</td>
-                                                <td style="text-align: right">?</td>
-                                            </tr>
-                                        </table>
-                                   </div> 
                                 </div>
                             </div>
                         </div>
